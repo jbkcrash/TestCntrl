@@ -1,0 +1,161 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "interfaces": [
+                {
+                    "interfaceId": "in_1",
+                    "description": "SIP(i3 baseline, unprotected)"
+                },
+                {
+                    "interfaceId": "in_2",
+                    "description": "SIP(i3, fully protected, TLS Mutual-Auth and DTLS for RTP)"
+                },
+                {
+                    "interfaceId": "in_3",
+                    "description": "SIP(Full Verifiable Identity, a.k.a. STIR/SHAKEN)"
+                },
+                {
+                    "interfaceId": "in_4",
+                    "description": "Location/HELD(unprotected)"
+                },
+                {
+                    "interfaceId": "in_5",
+                    "description": "Location/HELD(fully protected, TLS Mutual-Auth)"
+                },
+                {
+                    "interfaceId": "in_6",
+                    "description": "ADR(unprotected)"
+                },
+                {
+                    "interfaceId": "in_7",
+                    "description": "ADR(HTTPS GET, TLS Mutual-Auth)"
+                },
+                {
+                    "interfaceId": "in_8",
+                    "description": "IS-ADR(HTTPS POST, TLS Mutual-Auth)"
+                },
+                {
+                    "interfaceId": "in_9",
+                    "description": "SIP Location Dereference(SUBSCRIBE/NOTIFY)"
+                },
+                {
+                    "interfaceId": "in_10",
+                    "description": "Policy"
+                },
+                {
+                    "interfaceId": "in_11",
+                    "description": "LoST(unprotected)"
+                },
+                {
+                    "interfaceId": "in_12",
+                    "description": "LoST(fully protected)"
+                },
+                {
+                    "interfaceId": "in_13",
+                    "description": "EIDO(Call-Info)"
+                },
+                {
+                    "interfaceId": "in_14",
+                    "description": "EIDO(Conveyance)"
+                },
+                {
+                    "interfaceId": "in_15",
+                    "description": "EIDO(SUBSCRIBE/NOTIFY)"
+                },
+                {
+                    "interfaceId": "in_16",
+                    "description": "Logging(unprotected, Soap & XML)"
+                },
+                {
+                    "interfaceId": "in_17",
+                    "description": "Logging(unprotected, v3)"
+                },
+                {
+                    "interfaceId": "in_18",
+                    "description": "Logging(fully protected, Soap & XML)"
+                },
+                {
+                    "interfaceId": "in_19",
+                    "description": "Logging(fully protected, v3)"
+                }
+            ]
+        }
+    ],
+    "required": [
+        "interfaces"
+    ],
+    "properties": {
+        "interfaces": {
+            "$id": "#/properties/interfaces",
+            "type": "array",
+            "title": "The interfaces schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "interfaceId": "in_1",
+                        "description": "SIP(i3 baseline, unprotected)"
+                    },
+                    {
+                        "interfaceId": "in_2",
+                        "description": "SIP(i3, fully protected, TLS Mutual-Auth and DTLS for RTP)"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/interfaces/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/interfaces/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "interfaceId": "in_1",
+                                "description": "SIP(i3 baseline, unprotected)"
+                            }
+                        ],
+                        "required": [
+                            "interfaceId",
+                            "description"
+                        ],
+                        "properties": {
+                            "interfaceId": {
+                                "$id": "#/properties/interfaces/items/anyOf/0/properties/interfaceId",
+                                "type": "string",
+                                "title": "The interfaceId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "in_1"
+                                ]
+                            },
+                            "description": {
+                                "$id": "#/properties/interfaces/items/anyOf/0/properties/description",
+                                "type": "string",
+                                "title": "The description schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "SIP(i3 baseline, unprotected)"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}
