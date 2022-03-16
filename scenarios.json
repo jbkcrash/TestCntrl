@@ -1,0 +1,28 @@
+{
+    "scenarios": [
+      {
+            "id": "sc_1",
+            "osp": "Wireless/IMS",
+            "description": "Simple i3 Voice Call by_reference and value",
+            "exercised": "SIP, HELD, LOST, ADR"
+      },
+      {
+            "id": "sc_2",
+            "osp": "Legacy Wireline through PIF",
+            "description": "Simple i2 Voice Call by_value only",
+            "exercised": "SIP, HELD, LOST, ADR, SS7"
+      },
+      {
+            "id": "sc_3",
+            "osp": "Wireless/IMS",
+            "description": "Transfer/Conference",
+            "exercised": "SIP, HELD, LOST, ADR, EIDO"
+      },
+      {
+            "id": "sc_4",
+            "osp": "Wireless/IMS",
+            "description": "Redirection/Alternate/Overflow",
+            "exercised": "SIP, HELD, LOST, ADR, PRF"
+      }
+    ]
+ }

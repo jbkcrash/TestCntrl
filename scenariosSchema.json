@@ -1,0 +1,137 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "scenarios": [
+                {
+                    "id": "sc_1",
+                    "osp": "Wireless/IMS",
+                    "description": "Simple i3 Voice Call by_reference and value",
+                    "exercised": "SIP, HELD, LOST, ADR"
+                },
+                {
+                    "id": "sc_2",
+                    "osp": "Legacy Wireline through PIF",
+                    "description": "Simple i2 Voice Call by_value only",
+                    "exercised": "SIP, HELD, LOST, ADR, SS7"
+                },
+                {
+                    "id": "sc_3",
+                    "osp": "Wireless/IMS",
+                    "description": "Transfer/Conference",
+                    "exercised": "SIP, HELD, LOST, ADR, EIDO"
+                },
+                {
+                    "id": "sc_4",
+                    "osp": "Wireless/IMS",
+                    "description": "Redirection/Alternate/Overflow",
+                    "exercised": "SIP, HELD, LOST, ADR, PRF"
+                }
+            ]
+        }
+    ],
+    "required": [
+        "scenarios"
+    ],
+    "properties": {
+        "scenarios": {
+            "$id": "#/properties/scenarios",
+            "type": "array",
+            "title": "The scenarios schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "id": "sc_1",
+                        "osp": "Wireless/IMS",
+                        "description": "Simple i3 Voice Call by_reference and value",
+                        "exercised": "SIP, HELD, LOST, ADR"
+                    },
+                    {
+                        "id": "sc_2",
+                        "osp": "Legacy Wireline through PIF",
+                        "description": "Simple i2 Voice Call by_value only",
+                        "exercised": "SIP, HELD, LOST, ADR, SS7"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/scenarios/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/scenarios/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": "sc_1",
+                                "osp": "Wireless/IMS",
+                                "description": "Simple i3 Voice Call by_reference and value",
+                                "exercised": "SIP, HELD, LOST, ADR"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "osp",
+                            "description",
+                            "exercised"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/scenarios/items/anyOf/0/properties/id",
+                                "type": "string",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "sc_1"
+                                ]
+                            },
+                            "osp": {
+                                "$id": "#/properties/scenarios/items/anyOf/0/properties/osp",
+                                "type": "string",
+                                "title": "The osp schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "Wireless/IMS"
+                                ]
+                            },
+                            "description": {
+                                "$id": "#/properties/scenarios/items/anyOf/0/properties/description",
+                                "type": "string",
+                                "title": "The description schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "Simple i3 Voice Call by_reference and value"
+                                ]
+                            },
+                            "exercised": {
+                                "$id": "#/properties/scenarios/items/anyOf/0/properties/exercised",
+                                "type": "string",
+                                "title": "The exercised schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "SIP, HELD, LOST, ADR"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}

@@ -1,0 +1,49 @@
+﻿@page "/scenarios"
+
+<PageTitle>Scenario Worksheet</PageTitle>
+
+@using TestCntrl.Data
+@inject ScenarioService ScenarioConnector
+
+
+<PageTitle>Test Scenarios</PageTitle>
+
+<h3>Scenarios</h3>
+
+@if (scenariosArray == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>OSP</th>
+                <th>Description</th>
+                <th>Exercised</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var scenarioObject in scenariosArray)
+            {
+                <tr>
+                    <td>@scenarioObject.id</td> 
+                    <td>@scenarioObject.osp</td>
+                    <td>@scenarioObject.description</td>
+                    <td>@scenarioObject.exercised</td>               
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ScenarioObject[]? scenariosArray;
+
+    protected override async Task OnInitializedAsync()
+    {
+        scenariosArray = await ScenarioConnector.GetScenarios();
+    }
+}
