@@ -13,6 +13,7 @@ public class ScenarioService
     public Task<ScenarioObject[]> GetScenarios()
     {
         string jsonDoc = File.ReadAllText(Path);
+        List<ScenarioObject> ScenarioList = new List<ScenarioObject>();
 
         //XmlDocument doc = new XmlDocument();
         //doc.PreserveWhitespace = true;
@@ -29,6 +30,27 @@ public class ScenarioService
             if( scenarioDoc is not null) {
                 scenarioArray = scenarioDoc["scenarios"].AsArray();
 
+
+                foreach (JsonNode scenario in scenarioArray) {
+                    Console.WriteLine($"Object={scenario.ToJsonString()}");
+
+                    //id = scenario.Get<string>("id");
+                    string idVar = scenario["id"].ToString();
+                    string ospVar = scenario["osp"].ToString();
+                    string descriptionVar = scenario["description"].ToString();
+                    string exercisedVar = scenario["exercised"].ToString();
+
+                    ScenarioList.Add(new ScenarioObject {
+                        //id = scenario.Get<string>("id");
+                        id = idVar,
+                        osp = ospVar,
+                        description = descriptionVar,
+                        exercised = exercisedVar
+                    });
+
+
+
+                }
                
             }   
         }
@@ -41,14 +63,25 @@ public class ScenarioService
 
         
 
+       // ScenarioObject myResponse = new ScenarioObject {
+        //    id = "sc_1",
+        //    osp = "Wireless/IMS",
+        //    description = "Simple i3 Voice Call by_reference and value",
+        //    exercised = "SIP, HELD, LOST, ADR"
+        //};
 
-        return Task.FromResult(Enumerable.Range(1, 5).Select(index => new ScenarioObject
+        //ScenarioObject[] responseArray = new ScenarioObject[] {myResponse};
+        //ScenarioObject[] responseArray = ScenarioList.ToArray();
+
+        //return Task.Run(() => { ScenarioObject{}});
+        return Task.FromResult( ScenarioList.ToArray());
+        /* return Task.FromResult(Enumerable.Range(1, 5).Select(index => new ScenarioObject
         {
             id = "sc_1",
             osp = "Wireless/IMS",
             description = "Simple i3 Voice Call by_reference and value",
             exercised = "SIP, HELD, LOST, ADR"
-        }).ToArray());
+        }).ToArray()); */
     }
 
 
