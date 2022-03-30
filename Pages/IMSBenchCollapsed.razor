@@ -1,0 +1,46 @@
+@page "/imsbenchcollapsed"
+
+@using TestCntrl.Data
+@inject PositionService PositionConnector
+
+
+<PageTitle>i3/IMS Test Bench</PageTitle>
+
+<h3>i3/IMS Collapsed Positions</h3>
+
+<svg version="1.1"
+     width="600" height="500"
+     xmlns="http://www.w3.org/2000/svg">
+
+<rect width="100%" height="100%" fill="lightsteelblue" />
+
+@if (PositionsArray == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    @foreach (var PositionObject in PositionsArray)
+    {
+        <circle cx="@PositionObject.xBenchPos" cy="@PositionObject.yBenchPos" r="50" fill="green" />
+        <text><text x="@PositionObject.xBenchPos" y="@PositionObject.yBenchPos" font-size="20" text-anchor="middle" fill="white">@PositionObject.positionId</text></text>
+    }
+
+    
+}
+</svg>
+
+@* TODO Insert Test Cases list here, when selecting on a specific test case the page updates to include the Vendors in proper position. *@
+
+
+
+@code {
+    private PositionObject[]? PositionsArray;
+
+    protected override async Task OnInitializedAsync()
+    {
+        PositionsArray = await PositionConnector.GetPositions("imspositionscollapsed.json");
+    }
+
+}

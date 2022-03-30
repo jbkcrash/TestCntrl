@@ -1,0 +1,19 @@
+{
+    "vendorfe" : [
+        {
+            "positionId":"ecrf",
+            "vendorId":"1",
+            "note":"Local NGCS's ECRF"
+        },
+        {
+            "positionId":"esrp",
+            "vendorId":"1",
+            "note":""
+        },
+        {
+            "positionId":"che",
+            "vendorId":"2",
+            "note":""
+        }
+    ]
+}

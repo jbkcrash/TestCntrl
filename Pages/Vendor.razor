@@ -1,0 +1,45 @@
+@page "/vendors"
+
+<PageTitle>Vendor Worksheet</PageTitle>
+
+@using TestCntrl.Data
+@inject VendorService VendorConnector
+
+
+<PageTitle>Vendor Details</PageTitle>
+
+<h3>Vendor</h3>
+
+@if (VendorArray == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vendor ID</th>
+                <th>Vendor Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var VendorObject in VendorArray)
+            {
+                <tr>
+                    <td>@VendorObject.vendorId</td> 
+                    <td>@VendorObject.vendorName</td>                                 
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private VendorObject[]? VendorArray;
+
+    protected override async Task OnInitializedAsync()
+    {
+        VendorArray = await VendorConnector.GetVendor();
+    }
+}

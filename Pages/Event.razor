@@ -1,0 +1,47 @@
+@page "/event"
+
+<PageTitle>Event Worksheet</PageTitle>
+
+@using TestCntrl.Data
+@inject EventService EventConnector
+
+
+<PageTitle>Event Details</PageTitle>
+
+<h3>Event</h3>
+
+@if (EventArray == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var EventObject in EventArray)
+            {
+                <tr>
+                    <td>@EventObject.eventId</td> 
+                    <td>@EventObject.description</td>  
+                    <td>@EventObject.date</td>                                
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private EventObject[]? EventArray;
+
+    protected override async Task OnInitializedAsync()
+    {
+        EventArray = await EventConnector.GetEvent();
+    }
+}

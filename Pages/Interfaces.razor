@@ -1,0 +1,45 @@
+@page "/interfaces"
+
+<PageTitle>Interface Worksheet</PageTitle>
+
+@using TestCntrl.Data
+@inject InterfaceService InterfaceConnector
+
+
+<PageTitle>Test Interfaces</PageTitle>
+
+<h3>Interfaces</h3>
+
+@if (InterfacesArray == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Interface ID</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var interfaceObject in InterfacesArray)
+            {
+                <tr>
+                    <td>@interfaceObject.interfaceId</td> 
+                    <td>@interfaceObject.description</td>            
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private InterfaceObject[]? InterfacesArray;
+
+    protected override async Task OnInitializedAsync()
+    {
+        InterfacesArray = await InterfaceConnector.GetInterfaces();
+    }
+}

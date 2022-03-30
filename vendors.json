@@ -1,0 +1,16 @@
+{
+    "vendors" : [
+        {
+            "vendorId":"1",
+            "vendorName":"XYZ Company"
+        },
+        {
+            "vendorId":"2",
+            "vendorName":"ABC Company"
+        },
+        {
+            "vendorId":"3",
+            "vendorName":"123 Company"
+        }
+    ]
+}

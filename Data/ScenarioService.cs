@@ -15,73 +15,38 @@ public class ScenarioService
         string jsonDoc = File.ReadAllText(Path);
         List<ScenarioObject> ScenarioList = new List<ScenarioObject>();
 
-        //XmlDocument doc = new XmlDocument();
-        //doc.PreserveWhitespace = true;
-        //try { doc.Load("scenarios.xml"); }
-        //catch (System.IO.FileNotFoundException);
-
-
-
         if (jsonDoc is not null) {
-            JsonNode scenarioDoc = JsonNode.Parse(jsonDoc); //TODO fix null warning...
+            //TODO fix null warning...
+
+            //TODO Wrap in Try/Catch?
+            JsonNode scenarioDoc = JsonNode.Parse(jsonDoc); 
 
             // Get a JSON array from a JsonNode.
-            //JsonNode scenarios = scenarioDoc!["scenarios"]!;
             if( scenarioDoc is not null) {
                 scenarioArray = scenarioDoc["scenarios"].AsArray();
 
 
                 foreach (JsonNode scenario in scenarioArray) {
-                    Console.WriteLine($"Object={scenario.ToJsonString()}");
-
-                    //id = scenario.Get<string>("id");
+                    //Console.WriteLine($"Object={scenario.ToJsonString()}");
                     string idVar = scenario["id"].ToString();
                     string ospVar = scenario["osp"].ToString();
+                    string benchVar = scenario["bench"].ToString();
                     string descriptionVar = scenario["description"].ToString();
                     string exercisedVar = scenario["exercised"].ToString();
 
                     ScenarioList.Add(new ScenarioObject {
-                        //id = scenario.Get<string>("id");
                         id = idVar,
                         osp = ospVar,
+                        bench = benchVar,
                         description = descriptionVar,
                         exercised = exercisedVar
                     });
-
-
-
                 }
                
             }   
         }
-      
-
-
-
-        //Console.WriteLine($"First={scenarios.ToJsonString()}");
-        //Console.WriteLine($"JSON={datesAvailable.ToJsonString()}");
-
-        
-
-       // ScenarioObject myResponse = new ScenarioObject {
-        //    id = "sc_1",
-        //    osp = "Wireless/IMS",
-        //    description = "Simple i3 Voice Call by_reference and value",
-        //    exercised = "SIP, HELD, LOST, ADR"
-        //};
-
-        //ScenarioObject[] responseArray = new ScenarioObject[] {myResponse};
-        //ScenarioObject[] responseArray = ScenarioList.ToArray();
-
-        //return Task.Run(() => { ScenarioObject{}});
+ 
         return Task.FromResult( ScenarioList.ToArray());
-        /* return Task.FromResult(Enumerable.Range(1, 5).Select(index => new ScenarioObject
-        {
-            id = "sc_1",
-            osp = "Wireless/IMS",
-            description = "Simple i3 Voice Call by_reference and value",
-            exercised = "SIP, HELD, LOST, ADR"
-        }).ToArray()); */
     }
 
 

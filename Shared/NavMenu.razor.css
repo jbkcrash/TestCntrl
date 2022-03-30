@@ -60,3 +60,16 @@
         display: block;
     }
 }
+
+.sub-nav {
+    background-color: rgba(34, 187, 187, 0.1);
+}
+
+.sub-nav ::deep a.active {
+    padding-left: 3rem;
+}
+
+.nav-item-expanded {
+    background-color: rgba(156, 136, 204, 0.1) !important;
+}
+

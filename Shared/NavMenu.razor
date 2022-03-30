@@ -1,6 +1,6 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">TestCntrl</a>
+        <a class="navbar-brand" href="">E2E Test Manager</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,22 +15,64 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="event">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Event
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="vendors">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Participating Vendors
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="vendorfes">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Participating FEs
+            </NavLink>
+        </div>         
+        <div class="nav-item px-3">
             <NavLink class="nav-link" href="scenarios">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Scenarios
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" href="interfaces">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Interfaces
             </NavLink>
+        </div> <div class="nav-item px-3">
+            <NavLink class="nav-link" href="generate">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Generate Tests
+            </NavLink>
+        </div>
+        <div class="@NavMenuExpanded">
+            <NavLink class="nav-link" @onclick="()=>expandSubNav = !expandSubNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Test Benches
+            </NavLink>
+        @if (expandSubNav)
+        {
+            <div class="sub-nav">
+                <NavLink class="nav-link" href="imsbench">
+                    <span>i3/IMS Detailed</span>
+                </NavLink>
+                <NavLink class="nav-link" href="imsbenchcollapsed">
+                    <span>i3/IMS Collapsed</span>
+                </NavLink>
+                <NavLink class="nav-link" href="interworkbench">
+                    <span>Interworking</span>
+                </NavLink>
+            </div>
+        }
+            
         </div>
     </nav>
 </div>
 
 @code {
+    private bool expandSubNav;
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private string? NavMenuExpanded => expandSubNav ? "nav-item px-3 nav-item-expanded animate__slideInDown" : "nav-item px-3";
 
     private void ToggleNavMenu()
     {

@@ -1,0 +1,45 @@
+@page "/generate"
+
+<PageTitle>Generate Test Matrix</PageTitle>
+
+@using TestCntrl.Data
+@inject GenerateService GenerateConnector
+
+
+<PageTitle>Test Cases</PageTitle>
+
+<h3>Test Cases</h3>
+
+@if (VendorFEArray == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Position ID</th>
+                <th>Vendor ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var VendorFEObject in VendorFEArray)
+            {
+                <tr>
+                    <td>@VendorFEObject.positionId</td> 
+                    <td>@VendorFEObject.vendorId</td>                                 
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private VendorFEObject[]? VendorFEArray;
+
+    protected override async Task OnInitializedAsync()
+    {
+        VendorFEArray = await GenerateConnector.GetTests("sc_1");
+    }
+}

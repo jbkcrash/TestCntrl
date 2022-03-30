@@ -1,0 +1,121 @@
+{
+    "positions": [
+      {
+        "positionId": "ecrf",
+        "xBenchPos": "350",
+        "yBenchPos": "50",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "policy",
+        "xBenchPos": "450",
+        "yBenchPos": "50",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "esrp",
+        "xBenchPos": "350",
+        "yBenchPos": "150",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "ebcf",
+        "xBenchPos": "450",
+        "yBenchPos": "150",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "che",
+        "xBenchPos": "550",
+        "yBenchPos": "150",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "ibcf",
+        "xBenchPos": "250",
+        "yBenchPos": "150",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "obcf",
+        "xBenchPos": "150",
+        "yBenchPos": "150",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "osp",
+        "xBenchPos": "50",
+        "yBenchPos": "150",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "plis",
+        "xBenchPos": "150",
+        "yBenchPos": "250",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "olis",
+        "xBenchPos": "50",
+        "yBenchPos": "250",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "padr",
+        "xBenchPos": "150",
+        "yBenchPos": "350",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "oadr",
+        "xBenchPos": "50",
+        "yBenchPos": "350",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      },
+      {
+        "positionId": "logger_forwarder",
+        "xBenchPos": "350",
+        "yBenchPos": "450",
+        "northObjects": "",
+        "southObjects": "",
+        "westObjects": "",
+        "eastObjects": ""
+      }
+    ]
+ }

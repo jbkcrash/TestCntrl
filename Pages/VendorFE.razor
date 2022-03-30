@@ -1,0 +1,47 @@
+@page "/vendorfes"
+
+<PageTitle>Vendor FE Worksheet</PageTitle>
+
+@using TestCntrl.Data
+@inject VendorFEService VendorFEConnector
+
+
+<PageTitle>Vendor FE Details</PageTitle>
+
+<h3>Vendor FE</h3>
+
+@if (VendorArray == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Position ID</th>
+                <th>Vendor ID</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var VendorObject in VendorArray)
+            {
+                <tr>
+                    <td>@VendorObject.positionId</td> 
+                    <td>@VendorObject.vendorId</td>
+                    <td>@VendorObject.note</td>                                 
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private VendorFEObject[]? VendorArray;
+
+    protected override async Task OnInitializedAsync()
+    {
+        VendorArray = await VendorFEConnector.GetVendorFE();
+    }
+}
