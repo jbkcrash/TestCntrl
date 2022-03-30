@@ -64,24 +64,6 @@
         "eastObjects": ""
       },
       {
-        "positionId": "lis",
-        "xBenchPos": "150",
-        "yBenchPos": "250",
-        "northObjects": "",
-        "southObjects": "",
-        "westObjects": "",
-        "eastObjects": ""
-      },
-      {
-        "positionId": "adr",
-        "xBenchPos": "150",
-        "yBenchPos": "350",
-        "northObjects": "",
-        "southObjects": "",
-        "westObjects": "",
-        "eastObjects": ""
-      },
-      {
         "positionId": "logger_forwarder",
         "xBenchPos": "350",
         "yBenchPos": "450",
