@@ -1,19 +1,11 @@
 {
-    "vendorfe" : [
-        {
-            "positionId":"ecrf",
-            "vendorId":"1",
-            "note":"Local NGCS's ECRF"
-        },
-        {
-            "positionId":"esrp",
-            "vendorId":"1",
-            "note":""
-        },
-        {
-            "positionId":"che",
-            "vendorId":"2",
-            "note":""
-        }
-    ]
+    "vendorfes": {
+        "osp": [{ "vendorId":"osp_vendor1", "note":"note here 1" }, { "vendorId":"osp_vendor2", "note":"note here 2" }],
+        "ibcf": [{ "vendorId":"bcf_vendor1", "note":"note here 1" }, { "vendorId":"bcf_vendor2", "note":"note here 2" }],
+        "ecrf": [{ "vendorId":"ecrf_vendor1", "note":"note here 1"}, {"vendorId":"ecrf_vendor2", "note":"note here 2" }],
+        "esrp": [{ "vendorId":"esrp_vendor1", "note":"note here 1" }],
+        "ebcf": [{ "vendorId":"bcf_vendor3", "note":"note here 3" }],
+        "che": [{ "vendorId":"che_vendor1", "note":"note here 1" }],
+        "logger": [{ "vendorId":"logger_vendor1", "note":"note here 1" }, { "vendorId":"logger_vendor2", "note":"note here 2" }, { "vendorId":"logger_vendor3", "note":"note here 3" }]
+    }
 }

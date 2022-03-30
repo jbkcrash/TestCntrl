@@ -19,7 +19,6 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Position ID</th>
                 <th>Vendor ID</th>
                 <th>Note</th>
             </tr>
@@ -27,8 +26,7 @@ else
         <tbody>
             @foreach (var VendorObject in VendorArray)
             {
-                <tr>
-                    <td>@VendorObject.positionId</td> 
+                <tr> 
                     <td>@VendorObject.vendorId</td>
                     <td>@VendorObject.note</td>                                 
                 </tr>
@@ -42,6 +40,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        VendorArray = await VendorFEConnector.GetVendorFE();
+        VendorArray = await VendorFEConnector.GetVendorFE("osp");
     }
 }

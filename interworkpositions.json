@@ -91,7 +91,7 @@
         "eastObjects": ""
       },
       {
-        "positionId": "logger_forwarder",
+        "positionId": "loggers",
         "xBenchPos": "350",
         "yBenchPos": "450",
         "northObjects": "",

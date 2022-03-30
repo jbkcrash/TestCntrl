@@ -10,7 +10,7 @@ public class VendorFEService
     private const string Path = "vendorfes.json";
     private static JsonArray vendorfeArray = new JsonArray();
 
-    public Task<VendorFEObject[]> GetVendorFE()
+    public Task<VendorFEObject[]> GetVendorFE(string strPosition)
     {
         string jsonDoc = File.ReadAllText(Path);
         List<VendorFEObject> VendorFEList = new List<VendorFEObject>();
@@ -23,18 +23,18 @@ public class VendorFEService
 
             // Get a JSON array from a JsonNode.
             if( VendorFEDoc is not null) {
-                vendorfeArray = VendorFEDoc["vendorfe"].AsArray();
 
+                //Iterate of each position in the bench, extract the arrays and create our list(s).
+                JsonObject positionsObject = VendorFEDoc["vendorfes"].AsObject();
+                JsonArray targetPosition = positionsObject[strPosition].AsArray();
 
-                foreach (JsonNode VendorFE in vendorfeArray) {
-                    //Console.WriteLine($"Object={VendorFE.ToJsonString()}");
-                    string positionIdVar = VendorFE["positionId"].ToString();
-                    string vendorIdVar = VendorFE["vendorId"].ToString();
-                    string noteVar = VendorFE["note"].ToString();
+                foreach(JsonNode vendorObject in targetPosition) {
+                    Console.WriteLine($"Targets={vendorObject["vendorId"].ToString()}");
 
+                    string vendorIdVar = vendorObject["vendorId"].ToString();
+                    string noteVar = vendorObject["note"].ToString();
 
                     VendorFEList.Add(new VendorFEObject {
-                        positionId = positionIdVar,
                         vendorId = vendorIdVar,
                         note = noteVar
                     });
