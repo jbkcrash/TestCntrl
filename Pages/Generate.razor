@@ -10,7 +10,7 @@
 
 <h3>Test Cases</h3>
 
-@if (VendorFEArray == null)
+@if (TestCaseArray == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -19,16 +19,26 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Position ID</th>
-                <th>Vendor ID</th>
+                <th>OSP</th>
+                <th>iBCF</th>
+                <th>ESRP</th>
+                <th>ECRF</th>
+                <th>eBCF</th>
+                <th>CHE</th>
+                <th>Logger</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var VendorFEObject in VendorFEArray)
+            @foreach (var TestCase in TestCaseArray)
             {
                 <tr>
-                    <td>@VendorFEObject.note</td> 
-                    <td>@VendorFEObject.vendorId</td>                                 
+                    <td>@TestCase.osp</td> 
+                    <td>@TestCase.ibcf</td>
+                    <td>@TestCase.esrp</td>
+                    <td>@TestCase.ecrf</td>
+                    <td>@TestCase.ebcf</td>
+                    <td>@TestCase.che</td>                                
+                    <td>@TestCase.logger</td>
                 </tr>
             }
         </tbody>
@@ -36,10 +46,10 @@ else
 }
 
 @code {
-    private VendorFEObject[]? VendorFEArray;
+    private TestCaseObject[]? TestCaseArray;
 
     protected override async Task OnInitializedAsync()
     {
-        VendorFEArray = await GenerateConnector.GetTests("sc_1");
+        TestCaseArray = await GenerateConnector.GetTests("sc_1");
     }
 }

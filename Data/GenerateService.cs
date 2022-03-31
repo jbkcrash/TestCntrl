@@ -8,65 +8,22 @@ using System.Text.Json.Nodes;
 public class GenerateService
 {
 
-    // Permutate and Combination
-    // TODO move to its own file and class when ready
-    /* public static IEnumerable<TSource> Prepend<TSource>(this IEnumerable<TSource> source, TSource item)
-    {
-        if (source == null)
-            throw new ArgumentNullException("source");
-
-        yield return item;
-
-        foreach (var element in source)
-            yield return element;
-    }
-
-    public static IEnumerable<IEnumerable<TSource>> Permutate<TSource>(this IEnumerable<TSource> source)
-    {
-        if (source == null)
-            throw new ArgumentNullException("source");
-
-        var list = source.ToList();
-
-        if (list.Count > 1)
-            return from s in list
-                    from p in Permutate(list.Take(list.IndexOf(s)).Concat(list.Skip(list.IndexOf(s) + 1)))
-                    select p.Prepend(s);
-
-        return new[] { list };
-    }
-
-    public static IEnumerable<IEnumerable<TSource>> Combinate<TSource>(this IEnumerable<TSource> source, int k)
-    {
-        if (source == null)
-            throw new ArgumentNullException("source");
-
-        var list = source.ToList();
-        if (k > list.Count)
-            throw new ArgumentOutOfRangeException("k");
-
-        if (k == 0)
-            yield return Enumerable.Empty<TSource>();
-
-        foreach (var l in list)
-            foreach (var c in Combinate(list.Skip(list.Count - k - 2), k - 1))
-                yield return c.Prepend(l);
-    } */
-
-
     private const string ScenarioPath = "scenarios.json";
     private const string VendorsPath = "vendors.json";
     private const string VendorFEPath = "vendorfes.json";
 
     private static JsonArray vendorfeArray = new JsonArray(); // Our resultant array of vendor to positions.
 
-    public Task<VendorFEObject[]> GetTests(String strScenario)
+    public Task<TestCaseObject[]> GetTests(String strScenario)
     {
         //Read in our Vendor FE file
         string jsonDocVendorFEs = File.ReadAllText(VendorFEPath);
 
+        //This is our list of lists to permutate
         var listOfPositions = new List<List<string>>();
 
+        //List of tests to return
+        List<TestCaseObject> TestCaseObjectList = new List<TestCaseObject>();
         //Start with Scenarios, for each scenario(strScenario) we must do one run of tests.
         //string jsonDocScenario = File.ReadAllText(ScenarioPath);
 
@@ -100,12 +57,23 @@ public class GenerateService
                 var permuter2 = new ListOfListsPermuter<string>(listOfPositions);
                 foreach (IEnumerable<string> item in permuter2) {
                     Console.WriteLine("{ \"" + string.Join("\", \"", item) + "\" }");
+
+                    TestCaseObjectList.Add(new TestCaseObject {
+                        osp = item.ElementAt(0),//strPosition,
+                        ibcf = item.ElementAt(1),//vendorId = strVendor
+                        esrp = item.ElementAt(2),
+                        ecrf = item.ElementAt(3),
+                        ebcf = item.ElementAt(4),
+                        che = item.ElementAt(5),
+                        logger = item.ElementAt(6)
+                    });
+
                 }
             }
         }
         //JsonArray VendorFEsArray = VendorFEsDoc["vendorfes"].AsArray();
 
-        List<VendorFEObject> VendorFEList = new List<VendorFEObject>();
+        
         
         /* //Dictionary work        
         private Dictionary<string,List<VendorFEObject>> vendorFesDict = new Dictionary<string,List<VendorFEObject>>();
@@ -188,6 +156,6 @@ public class GenerateService
                 
             }
         } */
-        return Task.FromResult( VendorFEList.ToArray());
+        return Task.FromResult( TestCaseObjectList.ToArray() );
     }
 }
