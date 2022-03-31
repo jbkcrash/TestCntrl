@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using TestCntrl.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddRazorPages();

@@ -4,6 +4,9 @@ namespace TestCntrl.Data;
 using System;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Microsoft.Extensions.Configuration;
+
+
 
 public class EventService
 {
@@ -12,7 +15,13 @@ public class EventService
 
     public Task<EventObject[]> GetEvent()
     {
-        string jsonDoc = File.ReadAllText(Path);
+        //Pull in our configuration
+        var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+        string jsonDoc = File.ReadAllText(config["DataFolder"] + "\\" + Path);
         List<EventObject> EventList = new List<EventObject>();
 
         if (jsonDoc is not null) {
