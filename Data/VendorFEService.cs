@@ -12,7 +12,13 @@ public class VendorFEService
 
     public Task<VendorFEObject[]> GetVendorFE(string strPosition)
     {
-        string jsonDoc = File.ReadAllText(Path);
+        //Pull in our configuration
+        var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+        string jsonDoc = File.ReadAllText(config["DataFolder"] + "\\" + Path);
         List<VendorFEObject> VendorFEList = new List<VendorFEObject>();
 
         if (jsonDoc is not null) {

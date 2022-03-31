@@ -12,7 +12,13 @@ public class InterfaceService
 
     public Task<InterfaceObject[]> GetInterfaces()
     {
-        string jsonDoc = File.ReadAllText(Path);
+        //Pull in our configuration
+        var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+        string jsonDoc = File.ReadAllText(config["DataFolder"] + "\\" + Path);
         List<InterfaceObject> InterfaceList = new List<InterfaceObject>();
 
         if (jsonDoc is not null) {

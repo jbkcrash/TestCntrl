@@ -12,7 +12,13 @@ public class ScenarioService
 
     public Task<ScenarioObject[]> GetScenarios()
     {
-        string jsonDoc = File.ReadAllText(Path);
+        //Pull in our configuration
+        var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+        string jsonDoc = File.ReadAllText(config["DataFolder"] + "\\" + Path);
         List<ScenarioObject> ScenarioList = new List<ScenarioObject>();
 
         if (jsonDoc is not null) {

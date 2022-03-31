@@ -12,7 +12,13 @@ public class VendorService
 
     public Task<VendorObject[]> GetVendor()
     {
-        string jsonDoc = File.ReadAllText(Path);
+        //Pull in our configuration
+        var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+                 
+        string jsonDoc = File.ReadAllText(config["DataFolder"] + "\\" + Path);
         List<VendorObject> VendorList = new List<VendorObject>();
 
         if (jsonDoc is not null) {

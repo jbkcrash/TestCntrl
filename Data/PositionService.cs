@@ -7,12 +7,17 @@ using System.Text.Json.Nodes;
 
 public class PositionService
 {
-    //private string Path = "imspositions.json";
     private static JsonArray positionArray = new JsonArray();
 
     public Task<PositionObject[]> GetPositions(String strNature)
     {
-        string jsonDoc = File.ReadAllText(strNature);
+        //Pull in our configuration
+        var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+        string jsonDoc = File.ReadAllText(config["DataFolder"] + "\\" + strNature);
         List<PositionObject> PositionList = new List<PositionObject>();
 
         if (jsonDoc is not null) {

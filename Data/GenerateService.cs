@@ -13,8 +13,14 @@ public class GenerateService
 
     public Task<TestCaseObject[]> GetTests(String strScenario)
     {
+        //Pull in our configuration
+        var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
         //Read in our Vendor FE file
-        string jsonDocVendorFEs = File.ReadAllText(VendorFEPath);
+        string jsonDocVendorFEs = File.ReadAllText(config["DataFolder"] + "\\" + VendorFEPath);
 
         //This is our list of lists to permutate
         var listOfPositions = new List<List<string>>();
