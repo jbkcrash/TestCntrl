@@ -1,4 +1,5 @@
 {
+  "positionList": ["osp", "lis", "pif", "adr", "obcf", "ibcf", "esrp", "ecrf", "policy", "ebcf", "che", "logger"],
     "positions": [
       {
         "positionId": "ecrf",
@@ -91,7 +92,7 @@
         "eastObjects": ""
       },
       {
-        "positionId": "loggers",
+        "positionId": "logger",
         "xBenchPos": "350",
         "yBenchPos": "450",
         "northObjects": "",

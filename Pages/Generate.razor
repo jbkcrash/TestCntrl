@@ -4,11 +4,30 @@
 
 @using TestCntrl.Data
 @inject GenerateService GenerateConnector
-
+@inject ScenarioService ScenarioConnector
+@inject PositionService PositionConnector
 
 <PageTitle>Test Cases</PageTitle>
 
-<h3>Test Cases</h3>
+<h3>Select a Scenario</h3>
+
+@if(ScenarioArray == null)  
+{  
+<p>  
+    <em>Loading ...</em>  
+</p>  
+}  
+else  
+{  
+<select class="custom-select"  @onchange="OnValueChanged" title="Select a Scenario">  
+    <option value="Select" selected disabled="disabled">(Select Scenario)</option>  
+@foreach (var scenario in ScenarioArray)  
+{  
+    <option value="@scenario.id"> @scenario.id - @scenario.description</option>
+}  
+</select>  
+}  
+
 
 @if (TestCaseArray == null)
 {
@@ -45,11 +64,34 @@ else
     </table>
 }
 
+
+
+
+
 @code {
     private TestCaseObject[]? TestCaseArray;
+    private ScenarioObject[]? ScenarioArray;
+
+    private PositionListObject? TestCaseList;
 
     protected override async Task OnInitializedAsync()
     {
-        TestCaseArray = await GenerateConnector.GetTests("sc_1");
+        //TestCaseArray = await GenerateConnector.GetTests("sc_1");
+        ScenarioArray = await ScenarioConnector.GetScenarios();
     }
+    private async Task OnValueChanged(ChangeEventArgs e) {
+        //TODO get the positions file from the scenario that is selected
+        string strSelectedScenario = e.Value.ToString();
+        string strPositionsFileName = "";
+        //Look in the scenario array for our item
+        foreach(ScenarioObject scenarioObject in ScenarioArray){
+            if(scenarioObject.id.ToString() == strSelectedScenario) strPositionsFileName = scenarioObject.bench.ToString();
+        }
+
+        TestCaseList = await PositionConnector.GetPositionList(strPositionsFileName);
+        TestCaseArray = await GenerateConnector.GetTests(strSelectedScenario, TestCaseList );
+        //string Value = e.Value.ToString();
+        //EventCallback<string> ValueChanged;  
+        //return ValueChanged.InvokeAsync(Value);  
+    } 
 }

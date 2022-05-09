@@ -1,7 +1,7 @@
 {
     "event" : [
         {
-            "eventId":"ICE-10",
+            "eventId":"ice_10",
             "description":"NENA ICE 10 event",
             "date":"Nov'22"
         }

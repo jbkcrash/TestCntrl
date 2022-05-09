@@ -1,4 +1,5 @@
 {
+    "positionList": ["osp", "lis", "plis", "adr", "padr", "obcf", "ibcf", "esrp", "ecrf", "policy", "ebcf", "che", "logger"],
     "positions": [
       {
         "positionId": "ecrf",
@@ -82,7 +83,7 @@
         "eastObjects": ""
       },
       {
-        "positionId": "olis",
+        "positionId": "lis",
         "xBenchPos": "50",
         "yBenchPos": "250",
         "northObjects": "",
@@ -100,7 +101,7 @@
         "eastObjects": ""
       },
       {
-        "positionId": "oadr",
+        "positionId": "adr",
         "xBenchPos": "50",
         "yBenchPos": "350",
         "northObjects": "",
@@ -109,7 +110,7 @@
         "eastObjects": ""
       },
       {
-        "positionId": "logger_forwarder",
+        "positionId": "logger",
         "xBenchPos": "350",
         "yBenchPos": "450",
         "northObjects": "",

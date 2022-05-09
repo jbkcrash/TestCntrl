@@ -8,10 +8,11 @@ using System.Text.Json.Nodes;
 public class GenerateService
 {
     private const string VendorFEPath = "vendorfes.json";
+    private const string ScenarioPath = "scenarios.json";
 
     private static JsonArray vendorfeArray = new JsonArray(); // Our resultant array of vendor to positions.
 
-    public Task<TestCaseObject[]> GetTests(String strScenario)
+    public Task<TestCaseObject[]> GetTests(String strScenario, PositionListObject positionListObject)
     {
         //Pull in our configuration
         var config = new ConfigurationBuilder()
@@ -19,8 +20,7 @@ public class GenerateService
                  .AddJsonFile("appsettings.json")
                  .Build();
 
-        //Read in our Vendor FE file
-        string jsonDocVendorFEs = File.ReadAllText(config["DataFolder"] + "\\" + VendorFEPath);
+        
 
         //This is our list of lists to permutate
         var listOfPositions = new List<List<string>>();
@@ -28,12 +28,33 @@ public class GenerateService
         //List of tests to return
         List<TestCaseObject> TestCaseObjectList = new List<TestCaseObject>();
         
+        //TODO load scenario data and search for the scenario's bench file to load. That is change VendorFEPath...
+        string JsonDocScenarios = File.ReadAllText(config["DataFolder"] + "\\" + ScenarioPath);
+        JsonNode ScenariosDoc = JsonNode.Parse(JsonDocScenarios);
+        JsonArray ScenariosArray = ScenariosDoc["scenarios"].AsArray();
+        string strBench = new string("");
+        foreach(JsonNode Scenario in ScenariosArray){
+            if(Scenario["id"].ToString() == strScenario) {
+                strBench = Scenario["bench"].ToString(); //Set our bench file string to our temp variable
+                //Console.WriteLine("Scenario Data Object: " + Scenario.ToString());
+                break;
+            }
+
+        }
+        //TODO, load bench "strBench"
+
+        //Read in our Vendor FE file
+        string jsonDocVendorFEs = File.ReadAllText(config["DataFolder"] + "\\" + VendorFEPath);
+
         //TODO this needs base on the strScenario that is passed to this method.
         //The scenario will define which "bench" is in use, hence the positions and then calculate and return.
         //In the razor page we will get an object that contains the structure of the bench and the vendors in those
         //posisions.
 
         //Create our array of positions to calculate, this is replaced by bench definition for the scenario selected
+        
+        //TODO flop out this array for this list... positionListObject
+        //string[] strPositionsArray = positionListObject.positionList.ToArray();
         string[] strPositionsArray = new string[] {
             "osp","ibcf","esrp","ecrf","ebcf","che","logger"
         };
