@@ -38,26 +38,42 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>OSP</th>
-                <th>iBCF</th>
-                <th>ESRP</th>
-                <th>ECRF</th>
-                <th>eBCF</th>
-                <th>CHE</th>
-                <th>Logger</th>
+                @foreach( var posString in TestCaseList.positionList ) {
+                        if(posString is "osp" ) {<th>OSP</th>}
+                        if(posString is "lis" ) {<th>LIS</th>}
+                        if(posString is "plis" ) {<th>pLIS</th>}
+                        if(posString is "adr" ) {<th>ADR</th>}
+                        if(posString is "padr" ) {<th>pADR</th>}
+                        if(posString is "obcf" ) {<th>oBCF</th>}
+                        if(posString is "ibcf" ) {<th>iBCF</th>}
+                        if(posString is "esrp" ) {<th>ESRP</th>}
+                        if(posString is "ecrf" ) { <th>ECRF</th>}
+                        if(posString is "policy" ) {<th>Policy Store</th>}
+                        if(posString is "ebcf" ) { <th>eBCF</th>}   
+                        if(posString is "che" ) {<th>CHE</th>}
+                        if(posString is "logger") {<th>Logger</th>}
+                }
             </tr>
         </thead>
         <tbody>
             @foreach (var TestCase in TestCaseArray)
             {
                 <tr>
-                    <td>@TestCase.osp</td> 
-                    <td>@TestCase.ibcf</td>
-                    <td>@TestCase.esrp</td>
-                    <td>@TestCase.ecrf</td>
-                    <td>@TestCase.ebcf</td>
-                    <td>@TestCase.che</td>                                
-                    <td>@TestCase.logger</td>
+                    @foreach( var posString in TestCaseList.positionList ) {
+                        if(posString is "osp" ) {<td>@TestCase.osp</td>}
+                        if(posString is "lis" ) {<td>@TestCase.lis</td>}
+                        if(posString is "plis" ) {<td>@TestCase.plis</td>}
+                        if(posString is "adr" ) {<td>@TestCase.adr</td>}
+                        if(posString is "padr" ) {<td>@TestCase.padr</td>}
+                        if(posString is "obcf" ) {<td>@TestCase.obcf</td>}
+                        if(posString is "ibcf" ) {<td>@TestCase.ibcf</td>}
+                        if(posString is "esrp" ) {<td>@TestCase.esrp</td>}
+                        if(posString is "ecrf" ) { <td>@TestCase.ecrf</td>}
+                        if(posString is "policy" ) {<td>@TestCase.policy</td>}
+                        if(posString is "ebcf" ) { <td>@TestCase.ebcf</td>}   
+                        if(posString is "che" ) {<td>@TestCase.che</td>}
+                        if(posString is "logger") {<td>@TestCase.logger</td>}
+                    }
                 </tr>
             }
         </tbody>
@@ -73,6 +89,7 @@ else
     private ScenarioObject[]? ScenarioArray;
 
     private PositionListObject? TestCaseList;
+    //private string tableDefinition = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -89,6 +106,10 @@ else
         }
 
         TestCaseList = await PositionConnector.GetPositionList(strPositionsFileName);
+
+        
+        
+        // We have a list of positions... new we need to get the tests based on those positions.
         TestCaseArray = await GenerateConnector.GetTests(strSelectedScenario, TestCaseList );
         //string Value = e.Value.ToString();
         //EventCallback<string> ValueChanged;  

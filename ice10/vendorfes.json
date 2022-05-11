@@ -1,9 +1,16 @@
 {
     "vendorfes": {
         "osp": [{ "vendorId":"osp_vendor1", "note":"note here 1" }, { "vendorId":"osp_vendor2", "note":"note here 2" }],
+        "lis": [{ "vendorId":"lis_vendor1", "note":"note here 1" }, { "vendorId":"lis_vendor2", "note":"note here 2" }],
+        "pif": [{ "vendorId":"pif_vendor1", "note":"note here 1" }],
+        "plis": [{ "vendorId":"plis_vendor1", "note":"note here 1" }, { "vendorId":"plis_vendor2", "note":"note here 2" }],
+        "adr": [{ "vendorId":"adr_vendor1", "note":"note here 1" }, { "vendorId":"adr_vendor2", "note":"note here 2" }],
+        "padr": [{ "vendorId":"padr_vendor1", "note":"note here 1" }, { "vendorId":"padr_vendor2", "note":"note here 2" }],
+        "obcf": [{ "vendorId":"obcf_vendor1", "note":"note here 1" }, { "vendorId":"obcf_vendor2", "note":"note here 2" }],
         "ibcf": [{ "vendorId":"bcf_vendor1", "note":"note here 1" }, { "vendorId":"bcf_vendor2", "note":"note here 2" }],
-        "ecrf": [{ "vendorId":"ecrf_vendor1", "note":"note here 1"}, {"vendorId":"ecrf_vendor2", "note":"note here 2" }],
         "esrp": [{ "vendorId":"esrp_vendor1", "note":"note here 1" }],
+        "ecrf": [{ "vendorId":"ecrf_vendor1", "note":"note here 1"}, {"vendorId":"ecrf_vendor2", "note":"note here 2" }],
+        "policy": [{ "vendorId":"policy_vendor1", "note":"note here 1" }],
         "ebcf": [{ "vendorId":"bcf_vendor3", "note":"note here 3" }],
         "che": [{ "vendorId":"che_vendor1", "note":"note here 1" }],
         "logger": [{ "vendorId":"logger_vendor1", "note":"note here 1" }, { "vendorId":"logger_vendor2", "note":"note here 2" }, { "vendorId":"logger_vendor3", "note":"note here 3" }]

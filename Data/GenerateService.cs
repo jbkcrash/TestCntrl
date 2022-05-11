@@ -54,10 +54,13 @@ public class GenerateService
         //Create our array of positions to calculate, this is replaced by bench definition for the scenario selected
         
         //TODO flop out this array for this list... positionListObject
-        //string[] strPositionsArray = positionListObject.positionList.ToArray();
-        string[] strPositionsArray = new string[] {
-            "osp","ibcf","esrp","ecrf","ebcf","che","logger"
-        };
+        string[] strPositionsArray = positionListObject.positionList.ToArray();
+        Console.WriteLine("{ \"" + string.Join("\", \"", strPositionsArray) + "\" }");
+
+
+        //string[] strPositionsArray = new string[] {
+        //    "osp","ibcf","esrp","ecrf","ebcf","che","logger"
+        //};
 
         if( jsonDocVendorFEs is not null) {
         
@@ -67,19 +70,74 @@ public class GenerateService
                 JsonObject positionsObject = VendorFEDoc["vendorfes"].AsObject(); //Get all the FEs
                 foreach(string strPosition in strPositionsArray){
                     List<string> vendorsList = new List<string>();
-
+                    //Console.WriteLine("{ \"" + strPosition + "\" }");
+                    //Console.WriteLine("{ \"" + positionsObject[strPosition].ToString() + "\" }");
                     JsonArray targetPosition = positionsObject[strPosition].AsArray(); //Get the current position as array
                     foreach(JsonNode vendorObject in targetPosition) {
-                        vendorsList.Add(vendorObject["vendorId"].ToString());
+                        vendorsList.Add(vendorObject["vendorId"].ToString()); //Make this a dictionary...
                     }
                     listOfPositions.Add(vendorsList);
                 } //Done processing the list(s)
 
                 var permuter2 = new ListOfListsPermuter<string>(listOfPositions);
                 foreach (IEnumerable<string> item in permuter2) {
+                    TestCaseObject tcObject = new TestCaseObject();
+                    int iIndex = 0;
+                    //This is a hack, but it works as long as the order of teh elements doesn't change compared to the packed list and the data input
+                    //into the permuter
+                    foreach(string strPosition in strPositionsArray){
+                        switch(strPosition) {
+                            case "osp":
+                                tcObject.osp = item.ElementAt(iIndex);
+                                break;
+                            case "lis":
+                                tcObject.lis = item.ElementAt(iIndex);
+                                break;
+                            case "pif":
+                                tcObject.pif = item.ElementAt(iIndex);
+                                break;
+                            case "plis":
+                                tcObject.plis = item.ElementAt(iIndex);
+                                break;
+                            case "adr":
+                                tcObject.adr = item.ElementAt(iIndex);
+                                break;
+                            case "padr":
+                                tcObject.padr = item.ElementAt(iIndex);
+                                break;
+                            case "obcf":
+                                tcObject.obcf = item.ElementAt(iIndex);
+                                break;
+                            case "ibcf":
+                                tcObject.ibcf = item.ElementAt(iIndex);
+                                break;
+                            case "esrp":
+                                tcObject.esrp = item.ElementAt(iIndex);
+                                break;
+                            case "ecrf":
+                                tcObject.ecrf = item.ElementAt(iIndex);
+                                break;
+                            case "policy":
+                                tcObject.policy = item.ElementAt(iIndex);
+                                break;
+                            case "ebcf":
+                                tcObject.ebcf = item.ElementAt(iIndex);
+                                break;
+                            case "che":
+                                tcObject.che = item.ElementAt(iIndex);
+                                break;
+                            case "logger":
+                                tcObject.logger = item.ElementAt(iIndex);
+                                break;
+                            default:
+                                break;
+                        }
+                        iIndex++;
+                    }
+                    TestCaseObjectList.Add(tcObject);
                     //Console.WriteLine("{ \"" + string.Join("\", \"", item) + "\" }");
 
-                    TestCaseObjectList.Add(new TestCaseObject {
+                    /* TestCaseObjectList.Add(new TestCaseObject {
                         osp = item.ElementAt(0),
                         ibcf = item.ElementAt(1),
                         esrp = item.ElementAt(2),
@@ -87,7 +145,7 @@ public class GenerateService
                         ebcf = item.ElementAt(4),
                         che = item.ElementAt(5),
                         logger = item.ElementAt(6)
-                    });
+                    }); */
 
                 }
             }

@@ -30,10 +30,9 @@ public class PositionService
             //TODO Wrap in Try/Catch?
             JsonNode PositionDoc = JsonNode.Parse(jsonDoc);
             JsonArray PositionArray = PositionDoc["positionList"].AsArray();
-
+            positionListObject.positionList = new List<string>();
              //List<string> positionList = new List<string>;
             foreach(string PositionString in PositionArray) {
-                positionListObject.positionList = new List<string>();
                 positionListObject.positionList.Add(PositionString);
                 Console.WriteLine($"Position={PositionString}");
             }
